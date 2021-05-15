@@ -1,0 +1,27 @@
+.profile__subtitle {
+  /* width: 336px; */
+  margin: 0;
+  padding: 0;
+  font-size: 18px;
+  line-height: 22px;
+  color: #ffffff;
+}
+@media screen and (max-width: 1023px) {
+  .lead__subtitle {
+    margin-bottom: 7.3vw;
+  }
+}
+@media screen and (max-width: 767px) {
+  .lead__subtitle {
+    width: 80vw;
+    margin-top: 5vw;
+  }
+}
+@media screen and (max-width: 540px) {
+  .lead__subtitle {
+    width: 90vw;
+    margin-bottom: 12.5vw;
+    font-size: 16px;
+    line-height: 20px;
+  }
+}

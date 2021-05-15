@@ -1,0 +1,6 @@
+.photo-grid__heard {
+    width: 22px;
+    height: 19px;
+    /* object-fit: cover; */
+    background-image: url('../../../images/heard-disabled.svg');
+  }

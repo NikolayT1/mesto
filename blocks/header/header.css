@@ -1,0 +1,20 @@
+.header {
+  min-height: 52px;
+  /* min-width: 300px; */
+  width: 880px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: start;
+  align-items: center;
+}
+@media screen and (max-width: 890px) {
+  .header {
+    width: 90.6%;
+  }
+}
+@media screen and (max-width: 540px) {
+  .header {
+    min-height: 42px;
+    width: 90%;
+  }
+}
