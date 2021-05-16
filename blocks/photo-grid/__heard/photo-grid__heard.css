@@ -1,6 +1,15 @@
 .photo-grid__heard {
-    width: 22px;
-    height: 19px;
-    /* object-fit: cover; */
-    background-image: url('../../../images/heard-disabled.svg');
-  }
+  width: 22px;
+  height: 19px;
+  background-image: url("../../../images/heard-disabled.svg");
+  transition-property: opacity;
+  transition-duration: 0.5s;
+}
+.photo-grid__heard:hover {
+  opacity: 0.5;
+  cursor: pointer;
+}
+.photo-grid__heard:active {
+  opacity: 1;
+  background-image: url("../../../images/heard-active.svg");
+}

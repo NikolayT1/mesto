@@ -7,13 +7,9 @@
   /* border: 1px solid darkblue; */
   position: relative;
 }
-@media screen and (max-width: 1080px) {
-  .lead {
-    width: 90.6vw;
-  }
-}
-@media screen and (max-width: 770px) {
-  .lead {
-    width: 100%;
+@media screen and (max-width: 890px) {
+  .profile {
+    flex-direction: column;
+    justify-content: center;
   }
 }

@@ -1,6 +1,6 @@
 .photo-grid {
   width: 100%;
-  margin: 92px auto;
+  margin: 60px auto 67px;
   display: grid;
   grid-template-columns: repeat(auto-fill, 282px);
   grid-auto-flow: row;
@@ -9,13 +9,15 @@
 @media screen and (max-width: 890px) {
   .photo-grid {
     width: 580px;
-    gap: 16px;
   }
 }
-@media screen and (max-width: 560px) {
+@media screen and (max-width: 620px) {
   .photo-grid {
-    width: 90vw;
-    gap: 12px;
-    margin: 20vw 0;
+    width: 282px;
+    display: flex;
+    flex-direction: column;
+    margin-top: 5vw;
+    margin-bottom: 47px;
+    gap: 20px;
   }
 }

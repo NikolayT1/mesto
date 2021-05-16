@@ -1,21 +1,9 @@
 .footer {
-  min-width: 300px;
-  max-width: 880px;
+  width: 880px;
   margin: 0 auto;
-  ;
 }
-@media screen and (max-width: 1279px) {
+@media screen and (max-width: 890px) {
   .footer {
-    width: 90.6%;
-  }
-}
-@media screen and (max-width: 1023px) {
-  .footer {
-    width: 93.75%;
-  }
-}
-@media screen and (max-width: 720px) {
-  .footer {
-    flex-direction: column;
+    width: 90%;
   }
 }

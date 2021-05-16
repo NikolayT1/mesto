@@ -1,12 +1,13 @@
 .header__logo {
   height: 33px;
   width: 142px;
-  background-size: cover;
+  background-size: contain;
+  background-repeat: no-repeat;
   background-image: url("../../../images/vector.svg");
 }
-@media screen and (max-width: 540px) {
+@media screen and (max-width: 500px) {
   .header__logo {
-    height: 42px;
-    width: 142px;
+    height: 25px;
+    width: 104px;
   }
 }
