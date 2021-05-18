@@ -4,7 +4,6 @@
   top: -40px;
   right: -38px;
   position: absolute;
-  /* border: 1px solid red; */
   background-color: rgba(0, 0, 0, 0);
   background-image: url("../../../images/popup-close-icone.svg");
   background-repeat: no-repeat;
@@ -18,10 +17,10 @@
   opacity: 0.6;
 }
 @media screen and (max-width: 500px) {
-    .popup__close-button {
-        width: 37px;
-        height: 37px;
-        right: 0;
-        background-image: url("../../../images/popup-close-mini-icone.svg");
-    }
+  .popup__close-button {
+    width: 37px;
+    height: 37px;
+    right: 0;
+    background-image: url("../../../images/popup-close-mini-icone.svg");
   }
+}

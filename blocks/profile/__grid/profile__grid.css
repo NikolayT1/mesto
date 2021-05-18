@@ -1,11 +1,9 @@
 .profile__grid {
-  /* max-width: 500px; */
   margin: auto 0 auto 30px;
   display: grid;
   grid-template-columns: 1fr 25px;
   grid-template-rows: 40px 20px;
   gap: 16px;
-  /* border: 1px solid darkkhaki; */
   align-self: start;
 }
 @media screen and (max-width: 890px) {
@@ -15,7 +13,6 @@
 }
 @media screen and (max-width: 540px) {
   .profile__grid {
-    /* width: 282px; */
     display: flex;
     flex-direction: column;
     margin: 25px auto 15px;

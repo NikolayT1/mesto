@@ -1,13 +1,11 @@
 <!DOCTYPE html>
 <html lang="ru">
-
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="stylesheet" href="./pages/index.css" />
   <title>Место</title>
 </head>
-
 <body>
   <div class="page">
     <header class="header">
@@ -23,17 +21,15 @@
         </div>
         <button class="profile__add-button"></button>
       </section>
-
       <section class="popup">
         <div class="popup__container">
           <button class="popup__close-button"></button>
           <h2 class="popup__title">Редактировать профиль</h2>
-          <p class="popup__name">Жак-Ив Кусто</p>
-          <p class="popup__name">Исследователь океана</p>
+          <input type="text" placeholder="" class="popup__name">
+          <input type="text" placeholder="" class="popup__name">
           <button class="popup__save-button">Сохранить</button>
         </div>
       </section>
-
       <section class="photo-grid">
         <div class="photo-grid__item">
           <img src="./images/karachaevsk.jpg" alt="Карачаевск" class="photo-grid__image">
@@ -79,10 +75,10 @@
         </div>
       </section>
     </main>
+    <script src="./script.js"></script>
     <footer class="footer">
       <p class="footer__copyright">&copy; 2021. Mesto Russia</p>
     </footer>
   </div>
 </body>
-
 </html>

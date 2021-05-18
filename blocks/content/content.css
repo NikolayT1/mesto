@@ -7,7 +7,6 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-/*   border: 1px solid gold; */
 }
 @media screen and (max-width: 890px) {
   .content {
@@ -19,8 +18,3 @@
     margin-top: 75px;
   }
 }
-/* @media screen and (max-width: 1023px) {
-  .content {
-    margin-top: 48px;
-  }
-} */
