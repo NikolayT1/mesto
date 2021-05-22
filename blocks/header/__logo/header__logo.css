@@ -9,5 +9,6 @@
   .header__logo {
     height: 25px;
     width: 104px;
+    margin-left: 8vw;
   }
 }
