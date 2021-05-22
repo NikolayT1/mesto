@@ -16,69 +16,71 @@
         <img src="./images/kusto.jpg" alt="Фото" class="profile__image">
         <div class="profile__grid">
           <h1 class="profile__title">Жак-Ив Кусто</h1>
-          <button class="profile__edit-button"></button>
+          <button type="button" class="profile__edit-button"></button>
           <p class="profile__subtitle">Исследователь океана</p>
         </div>
-        <button class="profile__add-button"></button>
-      </section>
-      <section class="popup">
-        <div class="popup__container">
-          <button class="popup__close-button"></button>
-          <h2 class="popup__title">Редактировать профиль</h2>
-          <input type="text" placeholder="" class="popup__name">
-          <input type="text" placeholder="" class="popup__name">
-          <button class="popup__save-button">Сохранить</button>
-        </div>
+        <button type="button" class="profile__add-button"></button>
       </section>
       <section class="photo-grid">
         <div class="photo-grid__item">
           <img src="./images/karachaevsk.jpg" alt="Карачаевск" class="photo-grid__image">
           <div class="photo-grid__caption">
             <p class="photo-grid__text">Карачаево-Черкесск</p>
-            <div class="photo-grid__heard"></div>
+            <button type="button" class="photo-grid__heard"></button>
           </div>
         </div>
         <div class="photo-grid__item">
           <img src="./images/elbrus.jpg" alt="Гора Эльбрус" class="photo-grid__image">
           <div class="photo-grid__caption">
             <p class="photo-grid__text">Гора Эльбрус</p>
-            <div class="photo-grid__heard"></div>
+            <button type="button" class="photo-grid__heard"></button>
           </div>
         </div>
         <div class="photo-grid__item">
           <img src="./images/dombai.jpg" alt="Донбай" class="photo-grid__image">
           <div class="photo-grid__caption">
             <p class="photo-grid__text">Донбай</p>
-            <div class="photo-grid__heard"></div>
+            <button type="button" class="photo-grid__heard"></button>
           </div>
         </div>
         <div class="photo-grid__item">
           <img src="./images/noginsk.jpg" alt="Ногинск" class="photo-grid__image">
           <div class="photo-grid__caption">
             <p class="photo-grid__text">Ногинск</p>
-            <div class="photo-grid__heard"></div>
+            <button type="button" class="photo-grid__heard"></button>
           </div>
         </div>
         <div class="photo-grid__item">
           <img src="./images/reka.jpg" alt="Река" class="photo-grid__image">
           <div class="photo-grid__caption">
             <p class="photo-grid__text">Жиздра</p>
-            <div class="photo-grid__heard"></div>
+            <button type="button" class="photo-grid__heard"></button>
           </div>
         </div>
         <div class="photo-grid__item">
           <img src="./images/seliger.jpg" alt="Селигер" class="photo-grid__image">
           <div class="photo-grid__caption">
             <p class="photo-grid__text">Селигер</p>
-            <div class="photo-grid__heard"></div>
+            <button type="button" class="photo-grid__heard"></button>
           </div>
         </div>
       </section>
-    </main>
-    <script src="./script.js"></script>
+    </main>    
     <footer class="footer">
       <p class="footer__copyright">&copy; 2021. Mesto Russia</p>
     </footer>
+    <section class="popup">
+      <div class="popup__container">
+        <button type="reset" class="popup__close-button"></button>
+        <h2 class="popup__title">Редактировать профиль</h2>
+        <form class="popup__form" name="edit-form" action="#" method="POST">
+          <input type="text" placeholder="Имя автора" class="popup__name" name="firstName">
+          <input type="text" placeholder="Область деятельности" class="popup__name" name="interest">
+          <button type="submit" class="popup__save-button">Сохранить</button>
+        </form>
+      </div>
+    </section>
   </div>
+  <script src="./scripts/script.js"></script>
 </body>
 </html>

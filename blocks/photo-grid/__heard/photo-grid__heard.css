@@ -1,6 +1,10 @@
 .photo-grid__heard {
   width: 22px;
   height: 19px;
+  border: none;
+  margin: 0;
+  padding: 0;
+  background-color: aliceblue;
   background-image: url("../../../images/heard-disabled.svg");
   transition-property: opacity;
   transition-duration: 0.5s;

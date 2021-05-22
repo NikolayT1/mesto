@@ -10,6 +10,7 @@
   font-size: 18px;
   line-height: 22px;
   font-weight: 400;
+  border-radius: 2px;
   transition-property: opacity;
   transition-duration: 0.5s;
 }

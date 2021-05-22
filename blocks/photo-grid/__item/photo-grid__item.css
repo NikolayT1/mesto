@@ -1,6 +1,6 @@
 .photo-grid__item {
   width: 282px;
-  height: 361px;
+  min-height: 361px;
   background-color: aliceblue;
   border-radius: 15px;
 }
