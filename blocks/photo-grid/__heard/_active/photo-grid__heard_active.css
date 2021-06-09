@@ -1,0 +1,4 @@
+.photo-grid__heard_active {
+  opacity: 1;
+  background-image: url("../../../../images/heard-active.svg");
+}

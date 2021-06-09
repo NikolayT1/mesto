@@ -1,0 +1,19 @@
+.popup__figure-caption {
+    width: 100%;
+    margin: 8px 0 0;
+    font-size: 12px;
+    line-height: 15px;
+    /* letter-spacing: 0.15em;
+    text-transform: uppercase; */
+    color: #ffffff;
+}
+/*   @media screen and (max-width: 800px) {
+    .popup__figure-caption {
+      width: 93.75vw;
+    }
+  }
+  @media screen and (max-width: 540px) {
+    .popup__figure-caption {
+      width: 90vw;
+    }
+  } */
