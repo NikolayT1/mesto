@@ -3,7 +3,7 @@ let formEdit = formElement.querySelector(".popup__form");
 let formCardElement = document.querySelector(".popup_add-card");
 let formAddCard = formCardElement.querySelector(".popup__form");
 
-let popupImage = document.querySelector(".popup_image");
+let popupImage = document.querySelector(".zoom");
 
 let profileAddEdit = document.querySelector(".profile");
 let editButton = profileAddEdit.querySelector(".profile__edit-button");
@@ -12,7 +12,7 @@ let addCardButton = formCardElement.querySelector(".profile__add-button");
 
 let closeButton = formElement.querySelector(".popup__close-button");
 let closeCardButton = formCardElement.querySelector(".popup__close-button");
-let closeImageButton = document.querySelector(".popup_image").querySelector(".popup__close-button");
+let closeImageButton = popupImage.querySelector(".popup__close-button");
 
 let popapProfileInfo = formElement.querySelectorAll(".popup__name");
 let nameInput = profileAddEdit.querySelector(".profile__title"); // Воспользуйтесь инструментом .querySelector()
@@ -105,8 +105,8 @@ function handleMoovToBasket(evt) {
 }
 function handleZoomImage(evt) {
   console.log(evt.target.src);
-  popupImage.querySelector(".popup__image").src = evt.target.src;
-  popupImage.querySelector(".popup__figure-caption").textContent = evt.target.closest('.photo-grid__item').querySelector('.photo-grid__text').textContent;
+  popupImage.querySelector(".zoom__image").src = evt.target.src;
+  popupImage.querySelector(".zoom__figure-caption").textContent = evt.target.closest('.photo-grid__item').querySelector('.photo-grid__text').textContent;
   popupImage.classList.add("popup_opened");
 }
 function setEventListeners(item) {
