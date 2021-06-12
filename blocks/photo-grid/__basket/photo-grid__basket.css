@@ -1,22 +1,22 @@
 .photo-grid__basket {
-    width: 18px;
-    height: 19px;
-    border: none;
-    margin: 0;
-    padding: 0;
-    position: absolute;
-    top: 18px;
-    right: 15px;
-    background-color: rgba(0, 0, 0, 0);
-    background-image: url("../../../images/basket.svg");
-    transition-property: opacity;
-    transition-duration: 0.5s;
+  width: 18px;
+  height: 19px;
+  border: none;
+  margin: 0;
+  padding: 0;
+  position: absolute;
+  top: 18px;
+  right: 15px;
+  background-color: rgba(0, 0, 0, 0);
+  background-image: url("../../../images/basket.svg");
+  transition-property: opacity;
+  transition-duration: 0.5s;
 }
-  .photo-grid__basket:hover {
-    opacity: 0.5;
-    cursor: pointer;
-  }
-  .photo-grid__basket:active {
-    opacity: 1;
-    background-image: url("../../../images/basket.svg");
-  }
+.photo-grid__basket:hover {
+  opacity: 0.5;
+  cursor: pointer;
+}
+.photo-grid__basket:active {
+  opacity: 1;
+  background-image: url("../../../images/basket.svg");
+}
