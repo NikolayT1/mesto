@@ -1,20 +1,37 @@
-const formElement = document.querySelector(".popup_edit-autor");
-const formEdit = formElement.querySelector(".popup__form");
-const formCardElement = document.querySelector(".popup_add-card");
-const formAddCard = formCardElement.querySelector(".popup__form");
+const modalWindowEditProfile = document.querySelector(".popup_edit-autor");
+const formEdit = modalWindowEditProfile.querySelector(".popup__form");
+const modalWindowAddCard = document.querySelector(".popup_add-card");
+const formAddCard = modalWindowAddCard.querySelector(".popup__form");
 const popupImage = document.querySelector(".zoom");
+const popupCardPicture = popupImage.querySelector(".zoom__image");
+const popupCardTitle = popupImage.querySelector(".zoom__figure-caption");
 const profileAddEdit = document.querySelector(".profile");
 const editButton = profileAddEdit.querySelector(".profile__edit-button");
 const addButton = profileAddEdit.querySelector(".profile__add-button");
-const addCardButton = formCardElement.querySelector(".profile__add-button");
-const closeButton = formElement.querySelector(".popup__close-button");
-const closeCardButton = formCardElement.querySelector(".popup__close-button");
+const closeButton = modalWindowEditProfile.querySelector(
+  ".popup__close-button"
+);
+const closeCardButton = modalWindowAddCard.querySelector(
+  ".popup__close-button"
+);
 const closeImageButton = popupImage.querySelector(".popup__close-button");
-const popapProfileInfo = formElement.querySelectorAll(".popup__name");
 const nameInput = profileAddEdit.querySelector(".profile__title");
 const jobInput = profileAddEdit.querySelector(".profile__subtitle");
 const cardTemplate = document.querySelector("#item-template").content;
 const photoItem = document.querySelector(".photo-grid");
+
+function createCard(link, name) {
+  const gridItem = cardTemplate
+    .querySelector(".photo-grid__item")
+    .cloneNode(true);
+  gridItem.querySelector(".photo-grid__image").src = link;
+  gridItem.querySelector(".photo-grid__image").alt = name;
+  gridItem.querySelector(".photo-grid__text").textContent = name;
+  return gridItem;
+}
+function openPopap(popap) {
+  popap.classList.add("popup_opened");
+}
 function initialCardGrid() {
   const initialCards = [
     {
@@ -43,44 +60,33 @@ function initialCardGrid() {
     },
   ];
   initialCards.forEach(function (item) {
-    const gridItem = cardTemplate
-      .querySelector(".photo-grid__item")
-      .cloneNode(true);
-    gridItem.querySelector(".photo-grid__image").src = item.link;
-    gridItem.querySelector(".photo-grid__text").textContent = item.name;
-    photoItem.append(gridItem);
-    setEventListeners(gridItem); //добавить прослушиватель событий для карточки
+    const cardItem = createCard(item.link, item.name);
+    photoItem.append(cardItem);
+    setEventListeners(cardItem); //добавить прослушиватель событий для карточки
   });
 }
 function addCard() {
-  formCardElement.classList.add("popup_opened");
+  openPopap(modalWindowAddCard);
 }
 function editProfile() {
-  console.log(formEdit);
   formEdit.author.value = nameInput.textContent;
   formEdit.interest.value = jobInput.textContent;
-  formElement.classList.add("popup_opened");
+  openPopap(modalWindowEditProfile);
 }
 function closePopup(evt) {
   evt.target.closest(".popup").classList.remove("popup_opened");
-  /* formElement.classList.remove("popup_opened"); */
 }
-function formSubmitHandler(evt) {
+function HandleFormEditProfileSubmit(evt) {
   evt.preventDefault();
   nameInput.textContent = formEdit.author.value; //передает имя из popup в input
   jobInput.textContent = formEdit.interest.value; //передает деятельность из popup в input
   closePopup(evt); // закрывает popup
 }
-function formCardSubmitHandler(evt) {
+function HandleFormAddCardSubmit(evt) {
   evt.preventDefault();
-  const gridItem = cardTemplate
-    .querySelector(".photo-grid__item")
-    .cloneNode(true);
-  gridItem.querySelector(".photo-grid__image").src = formAddCard.link.value;
-  gridItem.querySelector(".photo-grid__text").textContent =
-    formAddCard.description.value;
-  photoItem.prepend(gridItem);
-  setEventListeners(gridItem); //добавить прослушиватель событий для карточки
+  const cardItem = createCard(formAddCard.link.value, formAddCard.name.value);
+  photoItem.prepend(cardItem);
+  setEventListeners(cardItem); //добавить прослушиватель событий для карточки
   closePopup(evt); // закрывает popup
 }
 initialCardGrid();
@@ -91,12 +97,12 @@ function handleMoovToBasket(evt) {
   evt.target.closest(".photo-grid__item").remove();
 }
 function handleZoomImage(evt) {
-  console.log(evt.target.src);
-  popupImage.querySelector(".zoom__image").src = evt.target.src;
-  popupImage.querySelector(".zoom__figure-caption").textContent = evt.target
+  popupCardPicture.src = evt.target.src;
+  popupCardPicture.alt = evt.target.src;
+  popupCardTitle.textContent = evt.target
     .closest(".photo-grid__item")
     .querySelector(".photo-grid__text").textContent;
-  popupImage.classList.add("popup_opened");
+  openPopap(popupImage);
 }
 function setEventListeners(item) {
   item
@@ -113,6 +119,6 @@ editButton.addEventListener("click", editProfile);
 closeButton.addEventListener("click", closePopup);
 closeCardButton.addEventListener("click", closePopup);
 closeImageButton.addEventListener("click", closePopup);
-formEdit.addEventListener("submit", formSubmitHandler);
+formEdit.addEventListener("submit", HandleFormEditProfileSubmit);
 addButton.addEventListener("click", addCard);
-formAddCard.addEventListener("submit", formCardSubmitHandler);
+formAddCard.addEventListener("submit", HandleFormAddCardSubmit);
