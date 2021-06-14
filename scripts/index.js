@@ -27,6 +27,7 @@ function createCard(link, name) {
   gridItem.querySelector(".photo-grid__image").src = link;
   gridItem.querySelector(".photo-grid__image").alt = name;
   gridItem.querySelector(".photo-grid__text").textContent = name;
+  setEventListeners(gridItem); //добавить прослушиватель событий для карточки
   return gridItem;
 }
 function openPopap(popap) {
@@ -62,7 +63,6 @@ function initialCardGrid() {
   initialCards.forEach(function (item) {
     const cardItem = createCard(item.link, item.name);
     photoItem.append(cardItem);
-    setEventListeners(cardItem); //добавить прослушиватель событий для карточки
   });
 }
 function addCard() {
@@ -76,17 +76,16 @@ function editProfile() {
 function closePopup(evt) {
   evt.target.closest(".popup").classList.remove("popup_opened");
 }
-function HandleFormEditProfileSubmit(evt) {
+function handleFormEditProfileSubmit(evt) {
   evt.preventDefault();
   nameInput.textContent = formEdit.author.value; //передает имя из popup в input
   jobInput.textContent = formEdit.interest.value; //передает деятельность из popup в input
   closePopup(evt); // закрывает popup
 }
-function HandleFormAddCardSubmit(evt) {
+function handleFormAddCardSubmit(evt) {
   evt.preventDefault();
   const cardItem = createCard(formAddCard.link.value, formAddCard.name.value);
   photoItem.prepend(cardItem);
-  setEventListeners(cardItem); //добавить прослушиватель событий для карточки
   closePopup(evt); // закрывает popup
 }
 initialCardGrid();
@@ -119,6 +118,6 @@ editButton.addEventListener("click", editProfile);
 closeButton.addEventListener("click", closePopup);
 closeCardButton.addEventListener("click", closePopup);
 closeImageButton.addEventListener("click", closePopup);
-formEdit.addEventListener("submit", HandleFormEditProfileSubmit);
+formEdit.addEventListener("submit", handleFormEditProfileSubmit);
 addButton.addEventListener("click", addCard);
-formAddCard.addEventListener("submit", HandleFormAddCardSubmit);
+formAddCard.addEventListener("submit", handleFormAddCardSubmit);
