@@ -1,74 +1,124 @@
 <!DOCTYPE html>
 <html lang="ru">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" href="./pages/index.css" />
-  <title>Место</title>
-</head>
-<body>
-  <div class="page">
-    <header class="header">
-      <div class="header__logo"></div>
-    </header>
-    <main class="content">
-      <section class="profile">
-        <img src="./images/kusto.jpg" alt="Фото" class="profile__image">
-        <div class="profile__grid">
-          <h1 class="profile__title">Жак-Ив Кусто</h1>
-          <button type="button" class="profile__edit-button"></button>
-          <p class="profile__subtitle">Исследователь океана</p>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./pages/index.css" />
+    <title>Место</title>
+  </head>
+
+  <body>
+    <div class="page">
+      <header class="header">
+        <div class="header__logo"></div>
+      </header>
+      <main class="content">
+        <section class="profile">
+          <img src="./images/kusto.jpg" alt="Фото" class="profile__image" />
+          <div class="profile__grid">
+            <h1 class="profile__title">Жак-Ив Кусто</h1>
+            <button type="button" class="profile__edit-button"></button>
+            <p class="profile__subtitle">Исследователь океана</p>
+          </div>
+          <button type="button" class="profile__add-button"></button>
+        </section>
+        <section class="photo-grid"></section>
+      </main>
+      <footer class="footer">
+        <p class="footer__copyright">&copy; 2021. Mesto Russia</p>
+      </footer>
+      <section class="popup popup_edit-autor">
+        <div class="popup__container">
+          <button type="button" class="popup__close-button"></button>
+          <h2 class="popup__title">Редактировать профиль</h2>
+          <form class="popup__form" name="edit-form" action="#" method="POST">
+            <label class="popup__field">
+              <input
+                id="author-input"
+                type="text"
+                placeholder="Имя автора"
+                class="popup__name"
+                name="author"
+                minlength="2"
+                maxlength="40"
+                required
+              />
+              <span class="author-input-error popup__input-error"></span>
+            </label>
+            <label class="popup__field">
+              <input
+                input
+                id="interest-input"
+                type="text"
+                placeholder="Область деятельности"
+                class="popup__name"
+                name="interest"
+                minlength="2"
+                maxlength="200"
+                required
+              />
+              <span class="interest-input-error popup__input-error"></span>
+            </label>
+            <button type="submit" class="popup__save-button">Сохранить</button>
+          </form>
         </div>
-        <button type="button" class="profile__add-button"></button>
       </section>
-      <section class="photo-grid">
+      <section class="popup popup_add-card">
+        <div class="popup__container">
+          <button type="button" class="popup__close-button"></button>
+          <h2 class="popup__title">Новое место</h2>
+          <form class="popup__form" name="edit-form" action="#" method="POST">
+            <label class="popup__field">
+              <input
+                id="name-input"
+                type="text"
+                placeholder="Название"
+                class="popup__name"
+                name="name"
+                minlength="2"
+                maxlength="30"
+                required
+              />
+              <span class="name-input-error popup__input-error"></span>
+            </label>
+            <label class="popup__field">
+              <input
+                id="link-input"
+                type="url"
+                placeholder="Ссылка на картинку"
+                class="popup__name"
+                name="link"
+                required
+              />
+              <span class="link-input-error popup__input-error"></span>
+            </label>
+            <button type="submit" class="popup__save-button">Сохранить</button>
+          </form>
+        </div>
       </section>
-    </main>
-    <footer class="footer">
-      <p class="footer__copyright">&copy; 2021. Mesto Russia</p>
-    </footer>
-    <section class="popup popup_edit-autor">
-      <div class="popup__container">
-        <button type="button" class="popup__close-button"></button>
-        <h2 class="popup__title">Редактировать профиль</h2>
-        <form class="popup__form" name="edit-form" action="#" method="POST">
-          <input type="text" placeholder="Имя автора" class="popup__name" name="author">
-          <input type="text" placeholder="Область деятельности" class="popup__name" name="interest">
-          <button type="submit" class="popup__save-button">Сохранить</button>
-        </form>
-      </div>
-    </section>
-    <section class="popup popup_add-card">
-      <div class="popup__container">
-        <button type="button" class="popup__close-button"></button>
-        <h2 class="popup__title">Новое место</h2>
-        <form class="popup__form" name="edit-form" action="#" method="POST">
-          <input type="text" placeholder="Название" class="popup__name" name="name">
-          <input type="text" placeholder="Ссылка на картинку" class="popup__name" name="link">
-          <button type="submit" class="popup__save-button">Сохранить</button>
-        </form>
-      </div>
-    </section>
-    <section class="popup zoom">
-      <div class="zoom__container">
-        <button type="button" class="popup__close-button"></button>
-        <figure class="zoom__figure">
-          <img src="#" alt="Увеличенное фото" class="zoom__image">
-          <figcaption class="zoom__figure-caption">ваша полка — верхняя</figcaption>
-        </figure>
-      </div>
-    </section>
-  </div>
-  <template id="item-template">
-    <div class="photo-grid__item">
-      <img src="#" alt="" class="photo-grid__image">
-      <button type="button" class="photo-grid__basket"></button>
-      <div class="photo-grid__caption">
-        <h2 class="photo-grid__text"></h2>
-        <button type="button" class="photo-grid__heard"></button>
-      </div>
+      <section class="popup zoom">
+        <div class="zoom__container">
+          <button type="button" class="popup__close-button"></button>
+          <figure class="zoom__figure">
+            <img src="#" alt="Увеличенное фото" class="zoom__image" />
+            <figcaption class="zoom__figure-caption">
+              ваша полка — верхняя
+            </figcaption>
+          </figure>
+        </div>
+      </section>
     </div>
-  </template>
-  <script src="./scripts/index.js"></script>
-</body>
+    <template id="item-template">
+      <div class="photo-grid__item">
+        <img src="#" alt="" class="photo-grid__image" />
+        <button type="button" class="photo-grid__basket"></button>
+        <div class="photo-grid__caption">
+          <h2 class="photo-grid__text"></h2>
+          <button type="button" class="photo-grid__heard"></button>
+        </div>
+      </div>
+    </template>
+    <script src="./scripts/index.js"></script>
+    <script src="./scripts/validate.js"></script>
+  </body>
 </html>

@@ -5,16 +5,16 @@
   line-height: 40px;
   font-weight: 400;
   color: #000;
-  margin: 36px auto 0;
+  margin: 21px auto 0;
   border: none;
   border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+  outline: none;
 }
-.popup__name:nth-of-type(2) {
-  margin-top: 17px;
+.popup__name:focus {
+  box-shadow: 0px 0px 2px 3px rgba(31, 116, 182, 0.2);
 }
 @media screen and (max-width: 500px) {
   .popup__name {
     width: 238px;
-    margin-top: 61px;
   }
 }

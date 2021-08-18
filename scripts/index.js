@@ -68,9 +68,12 @@ function initialCardGrid() {
 function addCard() {
   openPopap(modalWindowAddCard);
 }
-function editProfile() {
+function initProfile() {
   formEdit.author.value = nameInput.textContent;
   formEdit.interest.value = jobInput.textContent;
+}
+function editProfile() {
+  initProfile();
   openPopap(modalWindowEditProfile);
 }
 function closePopup(evt) {
@@ -114,6 +117,14 @@ function setEventListeners(item) {
     .querySelector(".photo-grid__image")
     .addEventListener("click", handleZoomImage);
 }
+initProfile();
+
+function closePopupWithEsc() {
+  modalWindowEditProfile.classList.remove("popup_opened");
+  modalWindowAddCard.classList.remove("popup_opened");
+  popupImage.classList.remove("popup_opened");
+}
+
 editButton.addEventListener("click", editProfile);
 closeButton.addEventListener("click", closePopup);
 closeCardButton.addEventListener("click", closePopup);
@@ -121,3 +132,21 @@ closeImageButton.addEventListener("click", closePopup);
 formEdit.addEventListener("submit", handleFormEditProfileSubmit);
 addButton.addEventListener("click", addCard);
 formAddCard.addEventListener("submit", handleFormAddCardSubmit);
+modalWindowEditProfile.addEventListener("click", closePopup); //закрытие всплывающего окна при щелчке на фоне
+modalWindowAddCard.addEventListener("click", closePopup); //закрытие всплывающего окна при щелчке на фоне
+popupImage.addEventListener("click", closePopup); //закрытие всплывающего окна при щелчке на фоне
+
+const conteiners = Array.from(document.querySelectorAll(".popup__container"));
+conteiners.forEach((item) => {
+  item.addEventListener("click", function (evt) {
+    evt.stopPropagation();
+  });
+}); //не дает всплывать клик для закрытия всплывающего окна
+popupImage
+  .querySelector(".zoom__figure")
+  .addEventListener("click", function (evt) {
+    evt.stopPropagation();
+  }); //не дает всплывать клик на увеличенном рисунке для закрытия всплывающего окна
+document.addEventListener("keydown", function (evt) {
+  if (evt.key === "Escape") closePopupWithEsc();
+});
