@@ -58,13 +58,10 @@ const enableValidation = (initial) => {
     setEventListenersForError(formElement, initial);
   });
 };
-
 function buttonOnOff(inputList, buttonElement, initial) {
-  buttonElement.classList.toggle(
-    initial.inactiveButtonClass,
-    inputList.some((inputElement) => {
-      return !inputElement.validity.valid;
-    })
-  );
+  if (inputList.some((inputElement) => {
+    return !inputElement.validity.valid;
+  })) { buttonElement.classList.add(initial.inactiveButtonClass) }
+  else { buttonElement.classList.remove(initial.inactiveButtonClass) };
 }
 enableValidation(errorInitial);
