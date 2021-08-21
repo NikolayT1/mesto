@@ -30,8 +30,9 @@ function createCard(link, name) {
   setEventListeners(gridItem); //добавить прослушиватель событий для карточки
   return gridItem;
 }
-function openPopap(popap) {
-  popap.classList.add("popup_opened");
+function openPopup(popup) {
+  popup.classList.add("popup_opened");
+  document.addEventListener("keydown", closeByEscape);
 }
 function initialCardGrid() {
   const initialCards = [
@@ -65,31 +66,46 @@ function initialCardGrid() {
     photoItem.append(cardItem);
   });
 }
+function deliteErrorCaption(form) {
+  const errorActiv = Array.from(form.querySelectorAll(".popup__input-error"));
+  errorActiv.forEach((errorElement) => {
+    errorElement.classList.remove("popup__input-error_active");
+  });
+}
+function initCard() {
+  formAddCard.link.value = '';
+  formAddCard.name.value = '';
+  deliteErrorCaption(formAddCard);
+  formAddCard.querySelector(".popup__save-button").classList.add("popup__save-button_disabled");
+}
 function addCard() {
-  openPopap(modalWindowAddCard);
+  initCard();
+  openPopup(modalWindowAddCard);
 }
 function initProfile() {
   formEdit.author.value = nameInput.textContent;
   formEdit.interest.value = jobInput.textContent;
+  deliteErrorCaption(formEdit);
 }
 function editProfile() {
   initProfile();
-  openPopap(modalWindowEditProfile);
+  openPopup(modalWindowEditProfile);
 }
-function closePopup(evt) {
-  evt.target.closest(".popup").classList.remove("popup_opened");
+function closePopup(popup) {
+  popup.classList.remove("popup_opened");
+  document.removeEventListener("keydown", closeByEscape);
 }
 function handleFormEditProfileSubmit(evt) {
   evt.preventDefault();
   nameInput.textContent = formEdit.author.value; //передает имя из popup в input
   jobInput.textContent = formEdit.interest.value; //передает деятельность из popup в input
-  closePopup(evt); // закрывает popup
+  closePopup(evt.target.closest(".popup")); // закрывает popup
 }
 function handleFormAddCardSubmit(evt) {
   evt.preventDefault();
   const cardItem = createCard(formAddCard.link.value, formAddCard.name.value);
   photoItem.prepend(cardItem);
-  closePopup(evt); // закрывает popup
+  closePopup(evt.target.closest(".popup")); // закрывает popup
 }
 initialCardGrid();
 function handleActivHeard(evt) {
@@ -104,7 +120,7 @@ function handleZoomImage(evt) {
   popupCardTitle.textContent = evt.target
     .closest(".photo-grid__item")
     .querySelector(".photo-grid__text").textContent;
-  openPopap(popupImage);
+  openPopup(popupImage);
 }
 function setEventListeners(item) {
   item
@@ -118,23 +134,33 @@ function setEventListeners(item) {
     .addEventListener("click", handleZoomImage);
 }
 initProfile();
-
-function closePopupWithEsc() {
-  modalWindowEditProfile.classList.remove("popup_opened");
-  modalWindowAddCard.classList.remove("popup_opened");
-  popupImage.classList.remove("popup_opened");
+function closeByEscape(evt) {
+  if (evt.key === "Escape") {
+    closePopup(document.querySelector(".popup_opened"));
+  }
 }
-
 editButton.addEventListener("click", editProfile);
-closeButton.addEventListener("click", closePopup);
-closeCardButton.addEventListener("click", closePopup);
-closeImageButton.addEventListener("click", closePopup);
+closeButton.addEventListener("click", function (evt) {
+  closePopup(evt.target.closest(".popup"));
+});
+closeCardButton.addEventListener("click", function (evt) {
+  closePopup(evt.target.closest(".popup"));
+});
+closeImageButton.addEventListener("click", function (evt) {
+  closePopup(evt.target.closest(".popup"));
+});
 formEdit.addEventListener("submit", handleFormEditProfileSubmit);
 addButton.addEventListener("click", addCard);
 formAddCard.addEventListener("submit", handleFormAddCardSubmit);
-modalWindowEditProfile.addEventListener("click", closePopup); //закрытие всплывающего окна при щелчке на фоне
-modalWindowAddCard.addEventListener("click", closePopup); //закрытие всплывающего окна при щелчке на фоне
-popupImage.addEventListener("click", closePopup); //закрытие всплывающего окна при щелчке на фоне
+modalWindowEditProfile.addEventListener("click", function (evt) {
+  closePopup(evt.target.closest(".popup"));
+}); //закрытие всплывающего окна при щелчке на фоне
+modalWindowAddCard.addEventListener("click", function (evt) {
+  closePopup(evt.target.closest(".popup"));
+}); //закрытие всплывающего окна при щелчке на фоне
+popupImage.addEventListener("click", function (evt) {
+  closePopup(evt.target.closest(".popup"));
+}); //закрытие всплывающего окна при щелчке на фоне
 
 const conteiners = Array.from(document.querySelectorAll(".popup__container"));
 conteiners.forEach((item) => {
@@ -147,6 +173,3 @@ popupImage
   .addEventListener("click", function (evt) {
     evt.stopPropagation();
   }); //не дает всплывать клик на увеличенном рисунке для закрытия всплывающего окна
-document.addEventListener("keydown", function (evt) {
-  if (evt.key === "Escape") closePopupWithEsc();
-});
