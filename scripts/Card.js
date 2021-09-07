@@ -11,7 +11,6 @@ export class Card {
         this._setEventListeners();
         return this._cardItem;
     }
-
     static _closePopup = () => {
         const popupImage = document.querySelector(".zoom");
         popupImage.classList.remove("popup_opened");
@@ -33,19 +32,15 @@ export class Card {
         const popupCardPicture = popupImage.querySelector(".zoom__image");
         const popupCardTitle = popupImage.querySelector(".zoom__figure-caption");
         const closeImageButton = popupImage.querySelector(".popup__close-button");
-
-
         popupCardPicture.src = evt.target.src;
         popupCardPicture.alt = evt.target.src;
         popupCardTitle.textContent = evt.target
             .closest(".photo-grid__item")
             .querySelector(".photo-grid__text").textContent;
         popupImage.classList.add("popup_opened");
-
         document.addEventListener("keydown", Card._closeByEscape);
         closeImageButton.addEventListener("click", Card._closePopup);
         popupImage.addEventListener("click", Card._closePopup);
-
         //закрытие всплывающего окна при щелчке на фоне
         popupImage
             .querySelector(".zoom__figure")
@@ -65,5 +60,4 @@ export class Card {
             .querySelector(".photo-grid__image")
             .addEventListener("click", Card._handleZoomImage);
     }
-
 }

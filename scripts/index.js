@@ -1,4 +1,5 @@
 import { Card } from './Card.js';
+import { FormValidator } from './FormValidator.js';
 const modalWindowEditProfile = document.querySelector(".popup_edit-autor");
 const formEdit = modalWindowEditProfile.querySelector(".popup__form");
 const modalWindowAddCard = document.querySelector(".popup_add-card");
@@ -16,6 +17,19 @@ const nameInput = profileAddEdit.querySelector(".profile__title");
 const jobInput = profileAddEdit.querySelector(".profile__subtitle");
 const cardTemplate = document.querySelector("#item-template").content;
 const photoItem = document.querySelector(".photo-grid");
+const errorInitial = {
+  inputSelector: ".popup__name",
+  submitButtonSelector: ".popup__save-button",
+  inactiveButtonClass: "popup__save-button_disabled",
+  inputErrorClass: "popup__name_type_error",
+  errorClass: "popup__input-error_active",
+};
+const formList = Array.from(document.querySelectorAll(".popup__form"));
+formList.forEach((formElement) => {
+  const formValidator = new FormValidator(errorInitial, formElement);
+  formValidator.enableValidation();
+});
+
 function openPopup(popup) {
   popup.classList.add("popup_opened");
   document.addEventListener("keydown", closeByEscape);
