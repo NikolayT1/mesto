@@ -1,5 +1,31 @@
-import { Card } from './Card.js';
-import { FormValidator } from './FormValidator.js';
+import { Card } from "./Card.js";
+import { FormValidator } from "./FormValidator.js";
+const initialCards = [
+  {
+    name: "Архыз",
+    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg",
+  },
+  {
+    name: "Челябинская область",
+    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg",
+  },
+  {
+    name: "Иваново",
+    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg",
+  },
+  {
+    name: "Камчатка",
+    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg",
+  },
+  {
+    name: "Холмогорский район",
+    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg",
+  },
+  {
+    name: "Байкал",
+    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg",
+  },
+];
 const modalWindowEditProfile = document.querySelector(".popup_edit-autor");
 const formEdit = modalWindowEditProfile.querySelector(".popup__form");
 const modalWindowAddCard = document.querySelector(".popup_add-card");
@@ -15,8 +41,12 @@ const closeCardButton = modalWindowAddCard.querySelector(
 );
 const nameInput = profileAddEdit.querySelector(".profile__title");
 const jobInput = profileAddEdit.querySelector(".profile__subtitle");
-const cardTemplate = document.querySelector("#item-template").content;
-const photoItem = document.querySelector(".photo-grid");
+/* const cardTemplate = document.querySelector("#item-template").content; */
+const cardContainer = document.querySelector(".photo-grid");
+
+const popupImage = document.querySelector(".zoom");
+const closeImageButton = popupImage.querySelector(".popup__close-button");
+
 const errorInitial = {
   inputSelector: ".popup__name",
   submitButtonSelector: ".popup__save-button",
@@ -34,49 +64,19 @@ function openPopup(popup) {
   popup.classList.add("popup_opened");
   document.addEventListener("keydown", closeByEscape);
 }
-function initialCardGrid() {
-  const initialCards = [
-    {
-      name: "Архыз",
-      link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg",
-    },
-    {
-      name: "Челябинская область",
-      link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg",
-    },
-    {
-      name: "Иваново",
-      link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg",
-    },
-    {
-      name: "Камчатка",
-      link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg",
-    },
-    {
-      name: "Холмогорский район",
-      link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg",
-    },
-    {
-      name: "Байкал",
-      link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg",
-    },
-  ];
+function initializeCardGrid() {
   initialCards.forEach(function (item) {
-    const card = new Card(item.link, item.name, cardTemplate);
-    photoItem.append(card.createCard());
-  });
-}
-function deliteErrorCaption(form) {
-  const errorActiv = Array.from(form.querySelectorAll(".popup__input-error"));
-  errorActiv.forEach((errorElement) => {
-    errorElement.classList.remove("popup__input-error_active");
+    const card = new Card(item.link, item.name, "#item-template");
+    cardContainer.append(card.createCard());
   });
 }
 function initCard() {
-  formAddCard.link.value = '';
-  formAddCard.name.value = '';
-  deliteErrorCaption(formAddCard);
-  formAddCard.querySelector(".popup__save-button").classList.add("popup__save-button_disabled");
+  formAddCard.link.value = "";
+  formAddCard.name.value = "";
+  FormValidator.deleteErrorCaption(formAddCard);
+  formAddCard
+    .querySelector(".popup__save-button")
+    .classList.add("popup__save-button_disabled");
 }
 function addCard() {
   initCard();
@@ -85,7 +85,7 @@ function addCard() {
 function initProfile() {
   formEdit.author.value = nameInput.textContent;
   formEdit.interest.value = jobInput.textContent;
-  deliteErrorCaption(formEdit);
+  FormValidator.deleteErrorCaption(formEdit);
 }
 function editProfile() {
   initProfile();
@@ -103,11 +103,15 @@ function handleFormEditProfileSubmit(evt) {
 }
 function handleFormAddCardSubmit(evt) {
   evt.preventDefault();
-  const card = new Card(formAddCard.link.value, formAddCard.name.value, cardTemplate);
-  photoItem.prepend(card.createCard());
+  const card = new Card(
+    formAddCard.link.value,
+    formAddCard.name.value,
+    "#item-template"
+  );
+  cardContainer.prepend(card.createCard());
   closePopup(evt.target.closest(".popup")); // закрывает popup
 }
-initialCardGrid();
+initializeCardGrid();
 initProfile();
 function closeByEscape(evt) {
   if (evt.key === "Escape") {
@@ -124,6 +128,14 @@ closeCardButton.addEventListener("click", function (evt) {
 formEdit.addEventListener("submit", handleFormEditProfileSubmit);
 addButton.addEventListener("click", addCard);
 formAddCard.addEventListener("submit", handleFormAddCardSubmit);
+
+closeImageButton.addEventListener("click", function (evt) {
+  closePopup(evt.target.closest(".popup"));
+});
+popupImage.addEventListener("click", function (evt) {
+  closePopup(evt.target.closest(".popup"));
+});
+
 modalWindowEditProfile.addEventListener("click", function (evt) {
   closePopup(evt.target.closest(".popup"));
 }); //закрытие всплывающего окна при щелчке на фоне
